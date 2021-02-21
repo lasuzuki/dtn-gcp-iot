@@ -5,7 +5,7 @@ In this tutorial we will demonstrate how to connect a Raspberry Pi and Sensor Ha
 # Setting up Raspbberry Pi and the Sense Hat
 In this tutorial we use **Raspberry Pi 4 model B (2018)** and **Sense Hat Version 1.0**. 
 
-<img src="https://github.com/lasuzuki/dtn-gcp-3nodes/blob/main/blob/raspberrypi.jpg" width=400 align=center>
+<img src="https://github.com/lasuzuki/dtn-gcp-iot/blob/main/blob/raspberrypi.jpg" width=400 align=center>
 
 The first step is to be sure your Pi can connect to the Internet. You can either plug in an ethernet cable, or if you’re using WiFi, scan for networks your Pi can see. Plug your Pi in a monitor, and when it starts, at the top right corner you can find the wifi logo. Select the network you want to connect to. Once that is connected open your browser to check whether you can access the Internet.
 
