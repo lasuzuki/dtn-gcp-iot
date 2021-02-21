@@ -98,7 +98,7 @@ On the Google Cloud Console, type Pub/Sub on the search bar, or pick up from the
 
 Now you have all the pieces needed to send telemetry data from your Pi to Google Cloud IoT Core!
 
-# The Code to send telemetry data to Google Cloud
+# Send telemetry data from Raspberry Pi to Google Cloud
 
 The code on this repository named `sense.py` is based on the implementation of [GabeWeiss](https://github.com/GabeWeiss/GCP_Quick_Starts). 
 
@@ -118,7 +118,37 @@ Once you have configured the above parameters in the file sense.py, on your Rasp
 ````
 $ python3 sense.py
 ````
-# The Code to send telemetry data to from host 1 to host 2 via DTN
+# Send telemetry data to from host 1 to host 2 via DTN
 
-Log into the VM `host 1`. In the VM go to the base directory of 
+Log into the VM `host 1`. In the VM go to the base directory of ION and create a folder named `dtn`
+````
+$ mkdir dtn
+````
+CD into dtn directory, and clone the file named `iot.py`. In this file configure the following parameters:
+```python
+subscription_path = subscriber.subscription_path(
+  'ID_OF_YOUR_GOOGLE_CLOUD_PROJECT', 'ID_OF_YOUR_SUBSCRIPTION')
+```
+And add `host 2` as the receiver of the telemetry data:
+```python
+os.system(f'echo "{value}" | bpsource ipn:2.1')
+```
+On the terminal of `host 1` and `host 2`, start ion:
+````
+$ ionstart -I hostX.rc #where X is the number of the host
+````
+On the terminal of `host 2`, start `bpsink`
+````
+$ bpsink ipn:2.1 &
+````
+On the terminal of `host 1`, start `iot.py`
+````
+$ python3 iot.py
+````
+On the terminal of `host 1` you should see the print out of the telemetry data received as below:
 
+<img src="https://github.com/lasuzuki/dtn-gcp-iot/blob/main/blob/host1.png" width=600 align=center>
+
+On the terminal of `host 2` you should see the payloads delivered. Please note that messages beyond 80 characters are not shown on `bpsink`:
+
+<img src="https://github.com/lasuzuki/dtn-gcp-iot/blob/main/blob/host2.png" width=600 align=center>
