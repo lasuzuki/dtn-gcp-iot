@@ -104,17 +104,21 @@ The code on this repository named `sense.py` is based on the implementation of [
 
 In the code, edit the following fields:
 
-1. ssl_private_key_filepath = '/home/pi/sensing_private.pem'
-2. ssl_algorithm = 'RS256'
-3. root_cert_filepath = '/home/pi/roots.pem'
-4. project_id = 'dtn-host-iot-297209'
-5. gcp_location = 'us-central1'
-6. registry_id = 'terrestrial-station-1'
-7. device_id = 'sensing-hat'
+```python
+ssl_private_key_filepath = '/home/pi/sensing_private.pem'
+ssl_algorithm = 'RS256'
+root_cert_filepath = '/home/pi/roots.pem'
+project_id = 'dtn-host-iot-297209'
+gcp_location = 'us-central1'
+registry_id = 'terrestrial-station'
+device_id = 'sensing-hat'
+```
 
 Once you have configured the above parameters in the file sense.py, on your Raspberry Pi run the command:
 ````
 $ python3 sense.py
 ````
+# The Code to send telemetry data to from host 1 to host 2 via DTN
 
+Log into the VM `host 1`. In the VM go to the base directory of 
 
